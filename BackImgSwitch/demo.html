@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="keywords" content=" " />
+		<meta name="description" content=" "/>
+		<title>div1</title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			#box {
+				height: 70px;
+				width: 360px;
+				padding-top: 360px;
+				border: 1px solid #ccc;
+				margin: 100px auto;
+				background: url(images/01big.jpg) no-repeat;
+			}
+			ul {
+				list-style: none;
+				overflow: hidden;
+				border-top: 1px solid #ccc;
+			}
+			li {
+				float: left;
+			}
+		</style>
+		<script>
+			function fn(bg){   //带形参函数
+				var box=document.getElementById('box');
+				box.style.backgroundImage = bg;
+			}
+		</script>
+	</head>
+	<body>
+		<div id="box">
+			<ul>
+				<li onmouseover="fn('url(images/01big.jpg)')"><img src="images/01.jpg" alt=""></li>
+				<li onmouseover="fn('url(images/02big.jpg)')"><img src="images/02.jpg" alt=""></li>
+				<li onmouseover="fn('url(images/03big.jpg)')"><img src="images/03.jpg" alt=""></li>
+				<li onmouseover="fn('url(images/04big.jpg)')"><img src="images/04.jpg" alt=""></li>
+				<li onmouseover="fn('url(images/05big.jpg)')"><img src="images/05.jpg" alt=""></li>
+			</ul>
+		</div>
+	</body>
+</html>

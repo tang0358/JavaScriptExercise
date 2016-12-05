@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="keywords" content=" " />
+		<meta name="description" content=" "/>
+		<title>div1</title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+
+		</style>
+		<script type="text/javascript">
+			window.onload = function(){
+				function $(id){
+					return document.getElementById(id);
+				}
+				$("btn").onclick = function(){
+					if($("txt").value == "小王")   //value获取表单的值
+						alert("恭喜中奖");
+					else
+						alert("查无此人");
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<input type="text" id="txt" placeholder="请输入...."/><button id="btn">查询</button>
+	</body>
+</html>
