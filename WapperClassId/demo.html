@@ -1,0 +1,77 @@
+<!DOCTYPE html> <!--id包含class的情况-->
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>封装属于自己的class类</title>
+	<style type="text/css">
+		div {
+			width: 100px;
+			height: 100px;
+			margin: 100px auto;
+			background-color: pink;
+		}
+	</style>
+	<script type="text/javascript">
+		window.onload = function(){
+			//封装自己的class类名
+			function getClass(classname,id){
+				//如果浏览器支持
+				if(document.getElementsByClassName) //证明浏览器是支持
+				{
+					//有id的情况
+					if(id)
+					{	
+						var eleId = document.getElementById(id);
+						return eleId.getElementsByClassName(classname);
+					}
+					else
+					{
+						return document.getElementsByClassName(classname);
+					}
+				}
+
+				//不支持的情况
+				if(id)
+				{
+					var eleId = document.getElementById(id);
+					var dom = eleId.getElementsByTagName('*');//获取id下面的所有元素
+
+				}
+				else
+				{
+					var dom = document.getElementsByTagName('*');//获取所有元素
+				}
+
+				var arr = [];  //以下的写法一样
+				for(var i=0;i<dom.length;i++)
+				{
+					var txtarr = dom[i].className.split(" ");
+					for(var j=0;j<txtarr.length;j++)
+					{
+						if(txtarr[j] == classname)
+						{
+							arr.push(dom[i]);
+						}
+					}
+				}
+			    return arr;
+				
+			}
+
+			console.log(getClass("test","haha").length); //先类名再id名
+		}
+	</script>
+</head>
+<body>
+	<div></div>
+	<div class="demo"></div>
+	<div></div>
+	<div></div>
+	<div id="haha">
+		<div class="demo test"></div>
+		<div></div>
+		<div></div>
+		<div class="demo test like"></div>
+	</div>
+</body>
+</html>
