@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>ConstellationSwitch</title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		.box {
+			width: 280px;
+			height: 180px;
+			border: 1px solid #333;
+			margin: 100px auto;
+		}
+		.dt { 
+			padding-left: 10px;
+			line-height: 30px;
+			font-weight: 700;
+		}
+		.dd {
+			padding: 10px;
+		}
+		.dd-t {
+			overflow: hidden;
+			margin-bottom: 10px;
+		}
+		.icon {
+			width: 50px;
+			height: 50px;
+			float: left;
+			background: url(images/icon.png) no-repeat;	
+			margin-right: 10px;
+		}
+		.yun {
+			margin-top: 5px;
+			font-size: 14px;
+		}
+		.yunshi {
+			width: 80px;
+			height: 13px;
+			display: inline-block; /*将span转换为块级元素*/
+			background: url(images/yunshi.png) no-repeat;
+			position: relative;
+		}
+		.star {             /*用精灵图底部的图像覆盖上面图像，修改宽度压住下面的盒子*/
+			width: 0px;
+			height: 13px;
+			position: absolute;
+			top: 0;
+			left: 0;
+			background: url(images/yunshi.png) no-repeat left bottom;
+		}
+		.dd-b {
+			font-size: 14px;
+		}
+
+	</style>
+	<script type="text/javascript">
+		window.onload = function(){
+			//获取元素
+			function $(id){ return document.getElementById(id);}
+			var arr = [10,9,6,9,7]; //将运势数值放入数组
+			var txtArr = ["白羊座的内容","金牛座的内容","双子座的内容"]; 将底部文字内容放入数组
+			var sele = document.getElementById('sele');
+			sele.onchange = function(){
+				$("ico").style.backgroundPosition = "0 "+(-this.value*50)+"px"; //由索引值获取精灵图定位
+				$("stAr").style.width = arr[this.value]*8+"px"; //改变覆盖图片的宽度
+				$("content").innerHTML = txtArr[this.value];
+
+			}
+
+		}
+	</script>
+</head>
+<body>
+	<div class="box">
+		<div class="dt">星座运势</div>
+		<div class="dd">
+			<div class="dd-t">
+				<div class="icon" id="ico"></div>
+				<div class="right">
+					<select name="" id="sele">
+						<option value="0">白羊座(03.21-04.19)</option>
+						<option value="1">金牛座(04.20-05.29)</option>
+						<option value="2">双子座(04.20-05.29)</option>
+					</select>
+					<div class="yun">今日运势: 
+						<span class="yunshi">
+							<span class="star" id="stAr"></span>
+						</span>
+					</div>
+				</div>
+			</div>
+			<div class="dd-b" id="content">人际，感情与家庭事物一直是你操心的焦点，特别是与伴侣之间无法割舍却又扰乱彼此步伐，家人也可...[<a href="#">详细</a>]</div>
+		</div>
+	</div>
+</body>
+</html>
