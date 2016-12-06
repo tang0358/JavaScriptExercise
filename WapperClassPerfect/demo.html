@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>封装属于自己的class类</title>
+	<style type="text/css">
+		div {
+			width: 100px;
+			height: 100px;
+			margin: 100px auto;
+			background-color: pink;
+		}
+	</style>
+	<script type="text/javascript">
+		window.onload = function(){
+			//封装自己的class类名
+			function getClass(classname){
+				//如果浏览器支持，则直接返回
+				if(document.getElementsByClassName) //证明浏览器是支持
+				{
+					return document.getElementsByClassName(classname); //返回一个伪数组
+				}
+
+				//不支持的浏览器
+				var arr = [];  //用于存放满足的数组
+				var dom = document.getElementsByTagName('*'); //把所有的标签都取出来
+				for(var i=0;i<dom.length;i++)   //遍历
+				{
+					var txtarr = dom[i].className.split(" "); // 分割类名并且转化为数组
+					//["demo","test"]
+					for(var j=0;j<txtarr.length;j++) //遍历分割过后的数组
+					{
+						if(txtarr[j] == classname)
+						{
+							arr.push(dom[i]);
+						}
+					}
+
+				}
+				return arr;
+			}
+			console.log(getClass("test").length); //得到想要的div
+
+			var test = getClass("test");
+			for(var i=0;i<test.length;i++)
+			{
+				test[i].style.backgroundColor = "purple";
+			}
+		}
+	</script>
+</head>
+<body>
+	<div></div>
+	<div class="demo"></div>
+	<div></div>
+	<div></div>
+	<div class="demo test"></div>
+	<div></div>
+	<div></div>
+	<div class="demo test like"></div>
+</body>
+</html>
