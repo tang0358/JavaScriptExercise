@@ -1,0 +1,78 @@
+<!DOCTYPE html>  <!--动态生成轮播图小圆点-->
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<style type="text/css">
+	* {
+		margin: 0;
+		padding: 0;
+	}
+	ul {
+		list-style: none;
+	}
+	.box {
+		width: 730px;
+		height: 454px;
+		margin: 100px auto;
+		overflow: hidden;
+		position: relative;
+	}
+	.circle {
+		position: absolute;
+		left: 50%;
+		margin-left: -50px;
+		bottom: 10px;
+
+	}
+	.circle span {
+		float: left;
+		width: 18px;
+		height: 18px;
+		border-radius: 50%;
+		background-color: pink;
+		text-align: center;
+		line-height: 18px;
+		margin-right: 10px;
+		cursor: pointer;
+	}
+
+</style>
+<script type="text/javascript">
+	window.onload =   function(){
+		var scroll = document.getElementById('scroll');
+		var circle = document.createElement('div'); //创建元素
+		circle.setAttribute("class","circle"); //添加类名
+		scroll.appendChild(circle); //给父元素添加子元素
+		var ul = document.getElementById('ul');
+		var lis = ul.children; //ul的所有孩子
+		alert(lis.length);
+		//生成了新的大盒子
+	    
+	    //大盒子里面要放入n个小的span
+	    for(var i=0;i<lis.length;i++)
+	    {
+	    	var newspan =  document.createElement("span"); //创建六次
+	    	newspan.innerHTML = i+1;
+	    	circle.appendChild(newspan);
+
+	    }
+ 	}
+</script>
+<body>
+	<div class="box" id="scroll">
+		<div class="slider">
+			<ul id="ul">
+				<li><img src="images/11.jpg"></li>
+				<li><img src="images/22.jpg"></li>
+				<li><img src="images/33.jpg"></li>
+				<li><img src="images/44.jpg"></li>
+				<li><img src="images/55.jpg"></li>
+				<li><img src="images/66.jpg"></li>
+			</ul>
+		</div>
+		
+	</div>
+</body>
+</html>

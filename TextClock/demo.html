@@ -1,0 +1,41 @@
+<!DOCTYPE html> <!--短信发送验证-->
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>TextClock</title>
+</head>
+<script type="text/javascript">
+	window.onload = function(){
+		var btn = document.getElementById('btn');
+		var count = 10;
+		var timer = null; //定时器的名字
+		btn.onclick = function(){
+			this.disabled = true; //按钮不可用
+
+			var that = this; //注意，这种写法经常用 var _this = this也是常见的写法
+
+			timer = setInterval(sendTextMessage,1000);//开启定时器
+			function sendTextMessage(){
+				count--;
+				if(count >= 0)
+				{
+					that.innerHTML = "还剩余"+count+"秒";
+			
+				}
+				else
+				{
+					that.innerHTML = "重新发送验证码";
+					that.disabled = false;
+					clearInterval(timer);//清除定时器
+					count = 10; 
+				}
+
+		}		
+	}
+}
+</script>
+<body>
+	<input type="text"/>
+	<button id="btn">点击获得验证码</button>
+</body>
+</html>

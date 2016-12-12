@@ -1,0 +1,81 @@
+<!DOCTYPE html> <!--微博留言板的制作-->
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<title>weibo</title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		.box{
+			width: 600px;
+			height: auto;
+			margin: 100px auto;
+			border: 1px solid #333;
+			padding: 30px 0;
+		}
+		textarea {
+			width: 450px;
+			resize: none; /*防止用户拖动*/
+		}
+		ul {
+			list-style: none;
+			margin-top: 10px;
+		}
+		.box li {
+			width: 450px;
+			line-height: 30px;
+			border-bottom: 1px dashed #ccc;
+			margin-left: 80px;
+		}
+		.box li a {
+			float: right;
+		}
+	</style>
+	<script type="text/javascript">
+		window.onload =  function(){
+			var box = document.getElementsByTagName('div')[0];
+			var btn = document.getElementsByTagName('button')[0];
+			var text =  document.getElementsByTagName('textarea')[0];
+			var ul = document.createElement('ul');
+			box.appendChild(ul);
+			btn.onclick = function(){
+				if(text.value == "")
+				{
+					alert("请输入有效的文本！");
+					return false; //终止函数的执行
+				}
+				var newli = document.createElement('li');
+				newli.innerHTML = text.value+"<a href='javascript:;'>删除</a>";
+				text.value = ""; //清空 表单
+				var lis = ul.children; //获得多少个li
+				if(lis.length == 0)
+				{
+					ul.appendChild(newli);
+				}
+				else
+				{
+					ul.insertBefore(newli,lis[0]);//每次生成新的li放在第一个的前面
+				}
+
+				var as = document.getElementsByTagName("a");
+				for(var i=0;i<as.length;i++)
+				{
+					as[i].onclick = function(){
+
+						//removeChild
+						ul.removeChild(this.parentNode); //删除对应的li,this是事件的调用者
+					}
+				}
+			}
+		}
+	</script>
+</head>
+<body>
+	 <div class="box">
+	 	微博发布:<textarea name="" id="" cols="30" rows="10"></textarea><button>发布</button>
+	 	
+	 </div>
+</body>
+</html>
